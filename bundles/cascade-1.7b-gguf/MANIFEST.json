@@ -1,0 +1,76 @@
+{
+  "name": "cascade-1.7b-gguf",
+  "version": "1",
+  "created_utc": "2026-09-17T06:39:57+00:00",
+  "base_model": "Qwen/Qwen3-1.7B",
+  "quantization": "GGUF Q8_0 (블록 32 대칭 int8, llama.cpp 내장)",
+  "why_this_path": "파이썬 산출물은 int8 을 적재 시 bf16 으로 역양자화해 RSS 5,622MB 였다. llama.cpp 는 int8 을 그대로 연산하므로 RSS 2,546MB 다",
+  "delegation": {
+    "path": "모델 내부 선형 헤드 (최종 임베딩)",
+    "n_params": 2049,
+    "decision_layer": "최종 (28/28) — llama.cpp 가 노출하는 임베딩",
+    "selected_on": "cal 3단 통제 AUROC (test 미열람)"
+  },
+  "measured": {
+    "test_ctrl_auroc": 0.7100180004341761,
+    "test_ctrl_ci": [
+      0.6751535925548656,
+      0.7894389882878036
+    ],
+    "cal_ctrl_auroc": 0.7580496780128795,
+    "beaten_baseline": {
+      "name": "E/A-en 외부 인코더 라우터",
+      "test_ctrl_auroc": 0.6040211430659714,
+      "test_ctrl_ci": [
+        0.5250965054115865,
+        0.6479804634257156
+      ],
+      "blob_mb": 90.9
+    },
+    "ci_disjoint_from_baseline": true,
+    "rss_mb": 2546,
+    "decision_ms_distinct_uncached": 324,
+    "decision_ms_cached": 60,
+    "local_gen_ms_256tok": 13100,
+    "decision_pct_of_local_gen": 0.0247,
+    "python_artifact_rss_mb": 5622,
+    "python_artifact_decision_ms": 2245,
+    "server_accuracy_measured": 0.967,
+    "cascade_accuracy": {
+      "local_only": 0.72,
+      "cascade": 0.841,
+      "gain_pp": 12.1,
+      "esc_rate": 0.18
+    }
+  },
+  "not_measured": [
+    "실제 폰/NPU — 8 vCPU 서버 CPU 실측이다",
+    "server 는 에이전트가 대신했다 (96.7% 는 편향된 상한)",
+    "judge/clarify 채점 18,816건 미완"
+  ],
+  "blob_bytes_total": 2165091333,
+  "blob_mb_total": 2165.1,
+  "files": [
+    {
+      "path": "delegate/config.json",
+      "bytes": 7117,
+      "sha256": "d3ac33832504d0e6e54961fb26cf65ade7c1bc1931e39717312bb26b8964ea68"
+    },
+    {
+      "path": "delegate/head.npz",
+      "bytes": 41962,
+      "sha256": "75cd1851d51e6a6a0f80b0f1641b9827c7568776bfb178bd132434b644d48928"
+    },
+    {
+      "path": "infer.py",
+      "bytes": 7279,
+      "sha256": "acc68794f18f57890ff8c18e93465bb145cf9f8369bdea59fe3f51457f39e782"
+    },
+    {
+      "path": "model/qwen3-1.7b-q8_0.gguf",
+      "bytes": 2165038976,
+      "sha256": "2cfc3b1b1ec5f5fac61a2c5a08ce67aabe202322f808aa401db50ba7c4a6116b"
+    }
+  ],
+  "total_bytes": 2165095334
+}

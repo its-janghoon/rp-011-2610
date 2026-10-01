@@ -1,0 +1,218 @@
+{
+  "gguf": {
+    "auroc_controlled_difficulty": 0.5116279069767442,
+    "auroc_uncontrolled": 0.8106312292358804,
+    "by_difficulty": {
+      "easy": {
+        "acc": 1.0,
+        "esc": 0.0,
+        "n": 20,
+        "score_mean": 0.95010885
+      },
+      "hard": {
+        "acc": 0.375,
+        "esc": 0.0,
+        "n": 10,
+        "score_mean": 0.8778896
+      },
+      "medium": {
+        "acc": 0.95,
+        "esc": 0.0,
+        "n": 20,
+        "score_mean": 0.91507985
+      }
+    },
+    "esc_rate": 0.0,
+    "local_only_acc": 0.855,
+    "n": 50,
+    "n_cell": 2,
+    "n_pair": 43,
+    "threshold_sweep": [
+      {
+        "easy": 0.0,
+        "hard": 0.0,
+        "medium": 0.0,
+        "target_esc": 0.0,
+        "threshold": 0.02532792091369629
+      },
+      {
+        "easy": 0.0,
+        "hard": 0.0,
+        "medium": 0.0,
+        "target_esc": 0.05,
+        "threshold": 0.14682422578334808
+      },
+      {
+        "easy": 0.0,
+        "hard": 0.0,
+        "medium": 0.0,
+        "target_esc": 0.1,
+        "threshold": 0.23033317923545837
+      },
+      {
+        "easy": 0.0,
+        "hard": 0.0,
+        "medium": 0.0,
+        "target_esc": 0.15,
+        "threshold": 0.3198779225349426
+      },
+      {
+        "easy": 0.0,
+        "hard": 0.0,
+        "medium": 0.0,
+        "target_esc": 0.2,
+        "threshold": 0.38717156648635864
+      },
+      {
+        "easy": 0.0,
+        "hard": 0.0,
+        "medium": 0.0,
+        "target_esc": 0.3,
+        "threshold": 0.5187511742115021
+      },
+      {
+        "easy": 0.0,
+        "hard": 0.0,
+        "medium": 0.0,
+        "target_esc": 0.4,
+        "threshold": 0.6597288250923157
+      },
+      {
+        "easy": 0.0,
+        "hard": 0.0,
+        "medium": 0.0,
+        "target_esc": 0.5,
+        "threshold": 0.7450497150421143
+      },
+      {
+        "easy": 0.0,
+        "hard": 0.0,
+        "medium": 0.0,
+        "target_esc": 0.6,
+        "threshold": 0.8265125155448914
+      },
+      {
+        "easy": 0.15,
+        "hard": 1.0,
+        "medium": 0.55,
+        "target_esc": 0.8,
+        "threshold": 0.9335445165634155
+      },
+      {
+        "easy": 1.0,
+        "hard": 1.0,
+        "medium": 1.0,
+        "target_esc": 1.0,
+        "threshold": 0.9971094131469727
+      }
+    ]
+  },
+  "sc06": {
+    "auroc_controlled_difficulty": 0.6990291262135923,
+    "auroc_uncontrolled": 0.5821205821205822,
+    "by_difficulty": {
+      "easy": {
+        "acc": 0.89375,
+        "esc": 0.5,
+        "n": 20,
+        "score_mean": 0.44853550000000003
+      },
+      "hard": {
+        "acc": 0.2,
+        "esc": 0.5,
+        "n": 10,
+        "score_mean": 0.4718742
+      },
+      "medium": {
+        "acc": 0.84375,
+        "esc": 0.5,
+        "n": 20,
+        "score_mean": 0.4896792
+      }
+    },
+    "esc_rate": 0.5,
+    "local_only_acc": 0.735,
+    "n": 50,
+    "n_cell": 3,
+    "n_pair": 103,
+    "threshold_sweep": [
+      {
+        "easy": 0.0,
+        "hard": 0.0,
+        "medium": 0.0,
+        "target_esc": 0.0,
+        "threshold": 0.04186248779296875
+      },
+      {
+        "easy": 0.0,
+        "hard": 0.0,
+        "medium": 0.0,
+        "target_esc": 0.05,
+        "threshold": 0.10062859952449799
+      },
+      {
+        "easy": 0.0,
+        "hard": 0.0,
+        "medium": 0.0,
+        "target_esc": 0.1,
+        "threshold": 0.1421927511692047
+      },
+      {
+        "easy": 0.0,
+        "hard": 0.0,
+        "medium": 0.0,
+        "target_esc": 0.15,
+        "threshold": 0.18126298487186432
+      },
+      {
+        "easy": 0.0,
+        "hard": 0.0,
+        "medium": 0.0,
+        "target_esc": 0.2,
+        "threshold": 0.21639269590377808
+      },
+      {
+        "easy": 0.3,
+        "hard": 0.2,
+        "medium": 0.15,
+        "target_esc": 0.3,
+        "threshold": 0.297627329826355
+      },
+      {
+        "easy": 0.45,
+        "hard": 0.5,
+        "medium": 0.45,
+        "target_esc": 0.4,
+        "threshold": 0.3880593776702881
+      },
+      {
+        "easy": 0.5,
+        "hard": 0.5,
+        "medium": 0.5,
+        "target_esc": 0.5,
+        "threshold": 0.49600765109062195
+      },
+      {
+        "easy": 0.75,
+        "hard": 0.6,
+        "medium": 0.6,
+        "target_esc": 0.6,
+        "threshold": 0.587897539138794
+      },
+      {
+        "easy": 1.0,
+        "hard": 1.0,
+        "medium": 1.0,
+        "target_esc": 0.8,
+        "threshold": 0.7820717692375183
+      },
+      {
+        "easy": 1.0,
+        "hard": 1.0,
+        "medium": 1.0,
+        "target_esc": 1.0,
+        "threshold": 0.9821988940238953
+      }
+    ]
+  }
+}

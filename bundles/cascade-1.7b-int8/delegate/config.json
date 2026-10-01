@@ -1,0 +1,47 @@
+{
+  "decision_layer": 14,
+  "n_layer_total": 28,
+  "feature": "last_mid",
+  "feature_definition": "전체 모델의 hidden_states[decision_layer] 마지막 프롬프트 토큰. 블록 14 출력이며 최종 norm 이전이다 — 래퍼는 블록 1..14 만 돌려 같은 텐서를 만든다",
+  "score_convention": "1 - P(accuracy < 0.75); 높을수록 로컬 유지",
+  "label_definition": "accuracy < 0.75",
+  "thresholds": {
+    "0.00": 0.020093955315002243,
+    "0.05": 0.08103664774352135,
+    "0.10": 0.16067609353630635,
+    "0.15": 0.24606873000736276,
+    "0.20": 0.3149931217723494,
+    "0.30": 0.45051630947674615,
+    "0.40": 0.6143621611940135,
+    "0.50": 0.7408533819640488,
+    "0.60": 0.8230397242005845,
+    "0.80": 0.9305942607269309,
+    "1.00": 0.9944713767270144
+  },
+  "default_target_esc": 0.2,
+  "default_threshold": 0.3149931217723494,
+  "thresholds_frozen_on": "int8 cal 점수 분위수 (배포 수치, test 미열람)",
+  "numerics": "rtn int8 W8 group128 (배포 형태)",
+  "n_params": 2049,
+  "chat_template": {
+    "add_generation_prompt": true,
+    "enable_thinking": false
+  },
+  "route_rule": "score < threshold -> delegate, else local",
+  "delegate_contract": {
+    "when": "route == 'delegate'",
+    "client_sends": {
+      "prompt": "원본 질의 문자열 (템플릿 적용 전)",
+      "id": "선택. 클라이언트 상관관계용",
+      "reason": "선택. {'score': float, 'threshold': float} 로 판정 근거를 남긴다"
+    },
+    "client_expects": {
+      "response": "서버의 답변 문자열",
+      "started_at_ms": "선택. 서버 처리 시작",
+      "ended_at_ms": "선택. 서버 처리 종료"
+    },
+    "on_failure": "서버 왕복이 실패하면 **로컬로 되돌린다.** 위임은 정확도 개선이지 필수 경로가 아니다 — 이 산출물은 서버 없이도 항상 답할 수 있다",
+    "local_fallback_cost": "되돌릴 때 프리필을 다시 치른다(먼저-결정 설계). 측정값은 results/22_artifact_verify.md 표 3",
+    "wire_format": "jsonl, 한 줄 = 한 질의. run_server.py 의 브리지와 동일"
+  }
+}

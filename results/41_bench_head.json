@@ -1,0 +1,55 @@
+{
+  "excluded_unstable_mmlu": [
+    "MMLU-en-0026",
+    "MMLU-en-0066",
+    "MMLU-en-0075",
+    "MMLU-en-0077",
+    "MMLU-en-0078",
+    "MMLU-en-0083",
+    "MMLU-en-0125",
+    "MMLU-en-0130",
+    "MMLU-en-0140",
+    "MMLU-en-0172",
+    "MMLU-en-0179",
+    "MMLU-en-0180",
+    "MMLU-en-0189",
+    "MMLU-en-0197",
+    "MMLU-en-0229",
+    "MMLU-en-0237",
+    "MMLU-en-0239",
+    "MMLU-en-0246"
+  ],
+  "fail_thr": 0.75,
+  "gguf": {
+    "auroc_GSM": 0.8357843137254902,
+    "auroc_MMLU": 0.7864745898359343,
+    "auroc_controlled_category": 0.8137790635379835,
+    "auroc_uncontrolled": 0.7986165288396526,
+    "ci95": [
+      0.7715091227262002,
+      0.8536681794456682
+    ],
+    "esc_rate_on_bench": 0.475103734439834,
+    "in_dist_test_3way_ctrl": 0.71,
+    "n": 482,
+    "n_cell": 2,
+    "n_pair": 27999,
+    "n_success": 261
+  },
+  "sc06": {
+    "auroc_GSM": 0.7500164203612479,
+    "auroc_MMLU": 0.6719501201923077,
+    "auroc_controlled_category": 0.7135998878648772,
+    "auroc_uncontrolled": 0.727614319940707,
+    "ci95": [
+      0.6734214662266016,
+      0.7599641772243981
+    ],
+    "esc_rate_on_bench": 0.5975103734439834,
+    "in_dist_test_3way_ctrl": 0.6704,
+    "n": 482,
+    "n_cell": 2,
+    "n_pair": 28537,
+    "n_success": 233
+  }
+}

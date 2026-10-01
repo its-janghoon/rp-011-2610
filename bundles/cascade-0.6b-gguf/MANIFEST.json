@@ -1,0 +1,29 @@
+{
+  "name": "cascade-0.6b-gguf",
+  "version": "1",
+  "base_model": "Qwen/Qwen3-0.6B",
+  "spec": "SPEC 13-U ~ 13-Z",
+  "files": [
+    {
+      "path": "delegate/config.json",
+      "bytes": 8497,
+      "sha256": "e040d6668870c6f6538f157c8f951564ecfa1d557ea56a44dc8b10c80f67dda8"
+    },
+    {
+      "path": "delegate/head.npz",
+      "bytes": 21482,
+      "sha256": "77f72aa9fd73a860b0c0206de4fe29f591a609e1e83be0ad3de58d9e3f0b8343"
+    },
+    {
+      "path": "infer.py",
+      "bytes": 7279,
+      "sha256": "767799939f2a7318feba89d23ded89295cafe3f92a9715754b04bc8d4965346f"
+    },
+    {
+      "path": "model/qwen3-0.6b-q8_0.gguf",
+      "bytes": 804753216,
+      "sha256": "8274eb6112c1c0e3c80a84bcb5517bf292e2600ec1f96b9b1324b2e904ec4ad3"
+    }
+  ],
+  "total_bytes": 804790474
+}

@@ -1,0 +1,26 @@
+{
+  "ctrl_auroc": 0.6704376644008244,
+  "ctrl_ci": [
+    0.6272148000969914,
+    0.7171691121648285
+  ],
+  "head": "26_llamacpp_head.sc06.json",
+  "label_source": "06_accuracy.sc06.parquet",
+  "local_only_acc": 0.5323932926829268,
+  "n_eval": 656,
+  "note": "cal 동결 문턱을 그대로 적용했다. test 위에서 적합·선택한 것은 없다",
+  "oracle_at_esc20": 0.7137057926829268,
+  "plain_auroc": 0.7959213255761647,
+  "seeds": [
+    1001,
+    1002,
+    1003,
+    1004,
+    1005,
+    1006,
+    1007,
+    1008
+  ],
+  "server_acc_used": 0.967,
+  "tag": "sc06"
+}

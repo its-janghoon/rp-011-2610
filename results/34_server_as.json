@@ -1,0 +1,59 @@
+{
+  "a_s_all": 0.8658536585365854,
+  "agent_as_previous": 0.967,
+  "arms": {
+    "0.6B @esc 40%": {
+      "a_s": 0.7829457364341085,
+      "condition": "G-sc06",
+      "margin": 0.502906976744186,
+      "n_escalated": 258,
+      "student_acc_on_subset": 0.2800387596899225,
+      "target_esc": 0.4
+    },
+    "0.6B @esc 50%": {
+      "a_s": 0.8126801152737753,
+      "condition": "G-sc06",
+      "margin": 0.48559077809798273,
+      "n_escalated": 347,
+      "student_acc_on_subset": 0.3270893371757925,
+      "target_esc": 0.5
+    },
+    "1.7B @esc 20%": {
+      "a_s": 0.6833333333333333,
+      "condition": "G-gguf",
+      "margin": 0.378125,
+      "n_escalated": 120,
+      "student_acc_on_subset": 0.30520833333333336,
+      "target_esc": 0.2
+    }
+  },
+  "by_rule": {
+    "contains_all": {
+      "a_s": 0.9132075471698113,
+      "n": 265
+    },
+    "json_ws_strip": {
+      "a_s": 1,
+      "n": 17
+    },
+    "label_unique": {
+      "a_s": 0.5952380952380952,
+      "n": 42
+    },
+    "numeric_last": {
+      "a_s": 0.7565217391304347,
+      "n": 115
+    },
+    "numeric_marker": {
+      "a_s": 0.7941176470588235,
+      "n": 34
+    },
+    "word_boundary": {
+      "a_s": 0.9289617486338798,
+      "n": 183
+    }
+  },
+  "model": "openai/gpt-4o-mini",
+  "n_graded": 656,
+  "note": "student 와 같은 프롬프트·같은 채점 규칙. SPEC 13-AD"
+}

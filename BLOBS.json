@@ -1,0 +1,25 @@
+{
+  "note": "Weight blobs are not shipped. Both units are given because the paper uses both: Section 6's 2,165 and 805 MB are SI megabytes, and Table 3's 2,065 and 1,223 MB are mebibytes of the same two files. Each bundle's MANIFEST.json carries the SHA-256.",
+  "blobs": {
+    "qwen3-1.7b-q8_0.gguf": {
+      "bytes": 2165038976,
+      "mb_si": 2165.0,
+      "mib": 2064.7
+    },
+    "qwen3-0.6b-q8_0.gguf": {
+      "bytes": 804753216,
+      "mb_si": 804.8,
+      "mib": 767.5
+    },
+    "qwen3-1.7b-q4_k_m.gguf": {
+      "bytes": 1282439040,
+      "mb_si": 1282.4,
+      "mib": 1223.0
+    },
+    "weights_int8.safetensors": {
+      "bytes": 2075986440,
+      "mb_si": 2076.0,
+      "mib": 1979.8
+    }
+  }
+}

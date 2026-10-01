@@ -1,0 +1,19 @@
+{
+  "source_project": "anon-cascade",
+  "server_grades": {
+    "n": 656,
+    "models": [
+      "openai/gpt-4o-mini"
+    ],
+    "graded": 656,
+    "ungraded": 0,
+    "file": "server_grades.jsonl",
+    "grader": "scripts/grade.py (동결) 의 grade_exact / grade_contains"
+  },
+  "excluded": {
+    "what": "openai/gpt-4o-mini 응답 텍스트 656건",
+    "why": "출력물 재배포가 OpenAI 이용약관과 충돌할 수 있다",
+    "impact": "없음 — a_s 가 상수가 아니라는 주장은 채점 라벨만으로 재현된다",
+    "verification": "response_sha256 으로 원본 보유자가 대조할 수 있다"
+  }
+}

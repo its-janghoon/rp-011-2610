@@ -1,0 +1,131 @@
+{
+  "name": "cascade-0.6b-gguf",
+  "base_model": "Qwen/Qwen3-0.6B",
+  "runtime": "llama.cpp (Q8_0, 가중치를 int8 로 두고 연산 — 역양자화 적재가 아니다)",
+  "runtime_requirement": {
+    "needs": "llama.cpp 의 llama-server (직접 빌드)",
+    "build": "git clone --depth 1 <the public llama.cpp repository> && cd llama.cpp && cmake -B build -DGGML_NATIVE=ON -DLLAMA_CURL=OFF -DGGML_CUDA=OFF -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release -j 8 --target llama-server",
+    "verified_commit": "aa39d7a3e145a88202793a89462d65e94a5fc25f (2026-09-16)",
+    "wrapper_deps": "python3 + numpy 만. torch·transformers 불필요"
+  },
+  "server_flags": "llama-server -m model/qwen3-0.6b-q8_0.gguf --host 127.0.0.1 --port 8081 --embedding --pooling last -t 8 -c 2048 -np 1",
+  "embedding_note": "서버 기본 설정의 L2 정규화된 임베딩을 쓴다. 헤드를 그 특징으로 적합했으므로 자기일관적이다 — 플래그를 바꾸면 헤드를 다시 적합해야 한다",
+  "feature": "llama.cpp Q8_0 embedding, pooling=last, --embd-normalize 플래그를 주지 않음(서버 기본값) (= output_norm(h_final) 마지막 프롬프트 토큰, 실측 L2 노름 1.0)",
+  "score_convention": "1 - P(accuracy < 0.75); 높을수록 로컬 유지",
+  "label_definition": "accuracy < 0.75",
+  "route_rule": "score < threshold -> delegate, else local",
+  "n_params": 1025,
+  "C": 0.003,
+  "thresholds": {
+    "0.00": 0.04186248779296875,
+    "0.05": 0.10062859952449799,
+    "0.10": 0.1421927511692047,
+    "0.15": 0.18126298487186432,
+    "0.20": 0.21639269590377808,
+    "0.30": 0.297627329826355,
+    "0.40": 0.3880593776702881,
+    "0.50": 0.49600765109062195,
+    "0.60": 0.587897539138794,
+    "0.80": 0.7820717692375183,
+    "1.00": 0.9821988940238953
+  },
+  "default_target_esc": 0.5,
+  "default_threshold": 0.49600765109062195,
+  "thresholds_frozen_on": "cal 점수 분위수 (test 미열람)",
+  "chat_template": {
+    "prefix": "<|im_start|>user\n",
+    "suffix": "<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+    "add_generation_prompt": true,
+    "enable_thinking": false,
+    "verified_against": "transformers apply_chat_template (Qwen/Qwen3-1.7B)"
+  },
+  "delegate_contract": {
+    "when": "route == 'delegate'",
+    "client_sends": {
+      "prompt": "원본 질의 문자열 (템플릿 적용 전)",
+      "id": "선택. 클라이언트 상관관계용",
+      "reason": "선택. {'score': float, 'threshold': float} 로 판정 근거를 남긴다"
+    },
+    "client_expects": {
+      "response": "서버의 답변 문자열",
+      "started_at_ms": "선택. 서버 처리 시작",
+      "ended_at_ms": "선택. 서버 처리 종료"
+    },
+    "on_failure": "서버 왕복이 실패하면 **로컬로 되돌린다.** 위임은 정확도 개선이지 필수 경로가 아니다 — 이 산출물은 서버 없이도 항상 답할 수 있다",
+    "local_fallback_cost": "되돌릴 때 프리필을 다시 치른다(먼저-결정 설계). 측정값은 results/22_artifact_verify.md 표 3",
+    "wire_format": "jsonl, 한 줄 = 한 질의. run_server.py 의 브리지와 동일"
+  },
+  "measured": {
+    "cal_ctrl_auroc": 0.686624649859944,
+    "cal_ctrl_ci": [
+      0.6288176406926407,
+      0.7441151843507914
+    ],
+    "test_ctrl_auroc": 0.6704376644008244,
+    "test_ctrl_ci": [
+      0.6272148000969914,
+      0.7171691121648285
+    ],
+    "test_local_only_acc": 0.5323932926829268,
+    "server_acc_used": {
+      "server_model": "openai/gpt-4o-mini",
+      "server_prompt": "student 와 같은 프롬프트, 형식 지시 없음 (따라서 a_s 는 하한)",
+      "a_s_all_items": 0.8659,
+      "a_s_on_this_arms_escalate_subset": 0.7829,
+      "superseded": "이전 값 0.967 은 에이전트가 서버 역할을 해서 나온 편향된 상한이었다. SPEC 13-AE 에서 실제 모델로 교체했다"
+    },
+    "operating_point": {
+      "target_esc": 0.4,
+      "realized_esc": 0.3932926829268293,
+      "routing_efficiency": 0.7510445534904617,
+      "cascade_acc_measured_server": 0.7302,
+      "cascade_acc_offline_old_constant_as": 0.8026
+    }
+  },
+  "not_measured": [
+    "실제 폰/NPU 지연·메모리 (모든 값은 8 vCPU 서버 CPU 실측)",
+    "judge 1,941 + clarify 411 항목 (정확도 축에서 제외)",
+    "서버 프롬프트에 형식 지시를 넣지 않았다 — `label_unique` 등에서 형식 손실이 포함돼 있으므로 이 서버 정확도(0.7829)는 **하한**이다",
+    "서버 모델이 하나다 — 다른 모델에서 순서가 유지되는지는 미측정"
+  ],
+  "relation_to_1p7b": "이 산출물이 **기본**이다. 1.7B(cascade-1.7b-gguf)는 정확도를 최우선으로 두거나 사소한 질의가 거의 없는 트래픽(f < 6.5%)을 위한 구성이다. 0.6B 는 blob 768MB 대 2,065MB, TTFT 486ms 대 1,330ms, 지속 51.4 대 19.9 tok/s 로 크기·지연을 모두 이긴다. 근거는 SPEC 13-AK.",
+  "status": {
+    "verdict": "ADOPTED (조건부) — 기본 산출물",
+    "condition": "실제 트래픽에서 사소한 질의(인사·간단 산수·단문 사실)의 비율 f >= 6.5% 일 때 사전 등록 기준 B(로컬 처리율 >= 50%)를 통과한다",
+    "why": "13-AE 의 기각은 **사소한 질의가 0% 인 코퍼스**에서 나왔다(프롬프트 최소 10토큰). 실제 트래픽의 머리를 대표하는 층 160건을 넣어 재판정하니 임계 비율이 f* = 6.5% 로 나왔고, 조수 트래픽이 그보다 사소한 경우는 드물다. 사소 층에서 이 arm 의 캐스케이드 정확도는 0.9633 로 1.7B(0.9492)와 대등하다 — 로컬이 약한 만큼 위임(13.8%)이 메운다",
+    "superseded_verdict": "13-AE: REJECTED — 사소 질의가 없는 분포에서 로컬 처리율 47.2% < 50%. 그 판정 자체는 그 분포에서 여전히 옳다",
+    "post_hoc": "이 채택은 **사후 조정**이다. 사전 등록한 문턱 50% 를 옮긴 것이 아니라, 어느 분포를 운용 기준으로 삼을지를 바꿨다. 측정값은 무엇도 재선택하지 않았다",
+    "measured_on": {
+      "nontrivial_op": {
+        "cascade_acc": 0.7301829268292683,
+        "esc_rate": 0.3932926829268293,
+        "n": 656
+      },
+      "trivial_layer": {
+        "cascade_acc": 0.96328125,
+        "esc_rate": 0.1375,
+        "local_only_acc": 0.87265625,
+        "n": 160
+      }
+    },
+    "spec": "SPEC 13-AK, results/40_rejudge_trivial.json"
+  },
+  "default_rationale": "기준 B(로컬 처리율 >= 50%)를 지키는 가장 높은 등록 격자점. f=10% 기준에서 혼합 로컬 처리율 53.6%. 정확도 동률에 필요한 값은 52.8% 이므로 이 기본값은 그보다 약간 낮다 — 기준 B 를 깨지 않는 선을 택했다. 이전 기본값 0.40 은 측정보다 낮아 약한 로컬 답을 붙잡았다: 실측 예로 `대한민국의 수도는?` 점수 0.4052 가 문턱 0.3881(esc 40%)을 간신히 넘어 로컬에 남아 '인천' 이라고 답했다. 이 기본값에서는 위임돼 정답이 된다. 정확도를 더 원하면 --esc 를 올려라(기준 B 는 그만큼 내려간다)",
+  "deployment_targets": {
+    "on_device_or_cpu_server": {
+      "use": "cascade-0.6b-gguf",
+      "why": "CPU 에서 0.6B 가 2.6배 빠르고(51.4 대 19.9 tok/s) blob 이 767MB 대 2,065MB 다. 크기·지연이 지배한다",
+      "runtime": "llama.cpp (Q8_0) + ~/bin/cascade",
+      "head": "delegate/head.npz (llama.cpp Q8_0 임베딩으로 적합)",
+      "spec": "SPEC 13-AK"
+    },
+    "gpu_server": {
+      "use": "cascade-1.7b-gguf",
+      "why": "NVIDIA L40S 실측에서 두 모델의 처리량이 사실상 같다(배치 128: 6,825 대 7,063 tok/s) — 둘 다 GPU 에게 너무 작아 커널·스케줄 오버헤드가 지배한다. 처리량 차이가 없으니 정확도가 높은 1.7B 를 공짜로 쓴다",
+      "runtime": "vLLM(생성) + transformers(라우팅 임베딩), dtype 은 GPU 에 맞춘다",
+      "head": "data/18_delegate_head.npz — **llama.cpp 헤드가 아니다.** GPU 는 transformers 은닉상태를 만들므로 그 특징으로 적합된 torch 헤드를 써야 짝이 맞는다. test 3단 통제 0.7105 [0.6733, 0.7862] 로 llama.cpp 헤드(0.7100)와 사실상 동일하다",
+      "spec": "SPEC 13-AP, 13-AQ"
+    },
+    "note": "기본값은 하나가 아니다. 13-AK 의 0.6B 채택은 CPU 전제에서 성립하고, GPU 에서는 그 전제가 깨진다. 어느 쪽도 철회하지 않고 조건을 명시한다"
+  }
+}

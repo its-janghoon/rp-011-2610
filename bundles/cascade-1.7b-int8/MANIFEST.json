@@ -1,0 +1,107 @@
+{
+  "name": "cascade-1.7b-int8",
+  "version": "1",
+  "created_utc": "2026-09-17T03:25:13+00:00",
+  "base_model": "Qwen/Qwen3-1.7B",
+  "quantization": {
+    "method": "rtn",
+    "scheme": "W8",
+    "weight_bits": 8,
+    "group_size": 128,
+    "quantized_linear": 196,
+    "quantized_weights": 1409286144,
+    "excluded": "임베딩(묶임), norm, lm_head"
+  },
+  "delegation": {
+    "path": "모델 내부 선형 헤드",
+    "n_params": 2049,
+    "decision_layer": "14/28",
+    "selected_on": "cal 3단 통제 AUROC (test 미열람)"
+  },
+  "measured": {
+    "test_ctrl_auroc_deployed_int8": 0.684,
+    "test_ctrl_auroc_bf16_same_layer": 0.6847722349011507,
+    "test_ctrl_auroc_final_layer_bf16": 0.7104831815749165,
+    "beaten_baseline": {
+      "name": "E/A-en 외부 인코더 라우터",
+      "test_ctrl_auroc": 0.6040211430659714,
+      "blob_mb": 90.9
+    },
+    "int8_vs_bf16_decision_agreement": 0.9836520666255398,
+    "int8_vs_bf16_flips": 53,
+    "server_accuracy_measured": 0.967,
+    "accuracy_gain_pp_at_esc20": [
+      7.9,
+      9.9
+    ]
+  },
+  "not_measured": [
+    "실제 폰/NPU 지연 — CPU 는 8 vCPU 서버 CPU 실측이다",
+    "vLLM RTN 커널과의 비트 동일성 — 산출물은 같은 RTN 수식을 파이썬으로 재현한 것이다",
+    "server 라벨은 60건 실측 — 전 test 위임 가치는 대리 라벨이다"
+  ],
+  "blob_bytes_total": 2091923525,
+  "blob_mb_total": 2091.9,
+  "files": [
+    {
+      "path": "delegate/config.json",
+      "bytes": 2104,
+      "sha256": "a5a03fa10538b4d83ab6cda83c4b6e93a2860f45ec599892dad172745aba53e6"
+    },
+    {
+      "path": "delegate/head.npz",
+      "bytes": 41962,
+      "sha256": "80ea87980e5da1b8e6de900be7f80d2fa2ef56eae4c9029e220a54be461badcd"
+    },
+    {
+      "path": "infer.py",
+      "bytes": 9427,
+      "sha256": "2fb0de9ae52ad0c9e15219d25edbeead5eefe1963daabbbe22004b413139e076"
+    },
+    {
+      "path": "model/added_tokens.json",
+      "bytes": 707,
+      "sha256": "c0284b582e14987fbd3d5a2cb2bd139084371ed9acbae488829a1c900833c680"
+    },
+    {
+      "path": "model/chat_template.jinja",
+      "bytes": 4168,
+      "sha256": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8"
+    },
+    {
+      "path": "model/config.json",
+      "bytes": 1360,
+      "sha256": "8765bfdb0d5e7fbc73263401e44a30f9be8f4889cda3536c27d4124c9b3b3d9b"
+    },
+    {
+      "path": "model/merges.txt",
+      "bytes": 1671853,
+      "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5"
+    },
+    {
+      "path": "model/special_tokens_map.json",
+      "bytes": 613,
+      "sha256": "76862e765266b85aa9459767e33cbaf13970f327a0e88d1c65846c2ddd3a1ecd"
+    },
+    {
+      "path": "model/tokenizer.json",
+      "bytes": 11422654,
+      "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+    },
+    {
+      "path": "model/tokenizer_config.json",
+      "bytes": 5404,
+      "sha256": "443bfa629eb16387a12edbf92a76f6a6f10b2af3b53d87ba1550adfcf45f7fa0"
+    },
+    {
+      "path": "model/vocab.json",
+      "bytes": 2776833,
+      "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    },
+    {
+      "path": "model/weights_int8.safetensors",
+      "bytes": 2075986440,
+      "sha256": "7ea30a9628507663e2569ee6795a4558f4754cbdc6b6a1e449ffa0797ce6d764"
+    }
+  ]
+}

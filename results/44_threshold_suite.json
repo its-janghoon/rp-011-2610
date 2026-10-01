@@ -1,0 +1,867 @@
+{
+  "_missing": [],
+  "bench/gguf": {
+    "acc_breakeven": 0.6047717842323651,
+    "acc_marginal_best": 0.6278526970954357,
+    "acc_under50": 0.6286307053941909,
+    "arm": "1.7B",
+    "best_acc": 0.649896265560166,
+    "curve": [
+      {
+        "cascade_acc": 0.6047717842323651,
+        "esc_rate": 0.02074688796680498,
+        "n": 482,
+        "n_graded": 482,
+        "target_esc": 0.0,
+        "threshold": 0.02532792091369629
+      },
+      {
+        "cascade_acc": 0.6278526970954357,
+        "esc_rate": 0.1991701244813278,
+        "n": 482,
+        "n_graded": 482,
+        "target_esc": 0.05,
+        "threshold": 0.14682422578334808
+      },
+      {
+        "cascade_acc": 0.6265560165975104,
+        "esc_rate": 0.3049792531120332,
+        "n": 482,
+        "n_graded": 482,
+        "target_esc": 0.1,
+        "threshold": 0.23033317923545837
+      },
+      {
+        "cascade_acc": 0.6281120331950207,
+        "esc_rate": 0.3962655601659751,
+        "n": 482,
+        "n_graded": 482,
+        "target_esc": 0.15,
+        "threshold": 0.3198779225349426
+      },
+      {
+        "cascade_acc": 0.6286307053941909,
+        "esc_rate": 0.475103734439834,
+        "n": 482,
+        "n_graded": 482,
+        "target_esc": 0.2,
+        "threshold": 0.38717156648635864
+      },
+      {
+        "cascade_acc": 0.6322614107883817,
+        "esc_rate": 0.5954356846473029,
+        "n": 482,
+        "n_graded": 482,
+        "target_esc": 0.3,
+        "threshold": 0.5187511742115021
+      },
+      {
+        "cascade_acc": 0.649896265560166,
+        "esc_rate": 0.7593360995850622,
+        "n": 482,
+        "n_graded": 482,
+        "target_esc": 0.4,
+        "threshold": 0.6597288250923157
+      },
+      {
+        "cascade_acc": 0.6434128630705395,
+        "esc_rate": 0.8443983402489627,
+        "n": 482,
+        "n_graded": 482,
+        "target_esc": 0.5,
+        "threshold": 0.7450497150421143
+      },
+      {
+        "cascade_acc": 0.641338174273859,
+        "esc_rate": 0.91701244813278,
+        "n": 482,
+        "n_graded": 482,
+        "target_esc": 0.6,
+        "threshold": 0.8265125155448914
+      },
+      {
+        "cascade_acc": 0.6397821576763485,
+        "esc_rate": 0.983402489626556,
+        "n": 482,
+        "n_graded": 482,
+        "target_esc": 0.8,
+        "threshold": 0.9335445165634155
+      },
+      {
+        "cascade_acc": 0.6390041493775933,
+        "esc_rate": 1.0,
+        "n": 482,
+        "n_graded": 482,
+        "target_esc": 1.0,
+        "threshold": 0.9971094131469727
+      }
+    ],
+    "esc_best": 0.4,
+    "esc_breakeven": 0.0,
+    "esc_marginal_best": 0.05,
+    "esc_rate_best": 0.7593360995850622,
+    "esc_rate_breakeven": 0.02074688796680498,
+    "esc_rate_marginal_best": 0.1991701244813278,
+    "esc_rate_under50": 0.475103734439834,
+    "esc_under50": 0.2,
+    "gain_per_delegation": 0.1289062500000001,
+    "layer": "공개 벤치",
+    "local_only_acc": 0.6021784232365145
+  },
+  "bench/sc06": {
+    "acc_breakeven": 0.5671680497925311,
+    "acc_marginal_best": 0.5671680497925311,
+    "acc_under50": 0.5757261410788381,
+    "arm": "0.6B",
+    "best_acc": 0.6390041493775933,
+    "curve": [
+      {
+        "cascade_acc": 0.5562759336099585,
+        "esc_rate": 0.0,
+        "n": 482,
+        "n_graded": 482,
+        "target_esc": 0.0,
+        "threshold": 0.04186248779296875
+      },
+      {
+        "cascade_acc": 0.5554979253112033,
+        "esc_rate": 0.03734439834024896,
+        "n": 482,
+        "n_graded": 482,
+        "target_esc": 0.05,
+        "threshold": 0.10062859952449799
+      },
+      {
+        "cascade_acc": 0.5671680497925311,
+        "esc_rate": 0.08091286307053942,
+        "n": 482,
+        "n_graded": 482,
+        "target_esc": 0.1,
+        "threshold": 0.1421927511692047
+      },
+      {
+        "cascade_acc": 0.5689834024896265,
+        "esc_rate": 0.12448132780082988,
+        "n": 482,
+        "n_graded": 482,
+        "target_esc": 0.15,
+        "threshold": 0.18126298487186432
+      },
+      {
+        "cascade_acc": 0.5754668049792531,
+        "esc_rate": 0.1887966804979253,
+        "n": 482,
+        "n_graded": 482,
+        "target_esc": 0.2,
+        "threshold": 0.21639269590377808
+      },
+      {
+        "cascade_acc": 0.5744294605809128,
+        "esc_rate": 0.2966804979253112,
+        "n": 482,
+        "n_graded": 482,
+        "target_esc": 0.3,
+        "threshold": 0.297627329826355
+      },
+      {
+        "cascade_acc": 0.5757261410788381,
+        "esc_rate": 0.41286307053941906,
+        "n": 482,
+        "n_graded": 482,
+        "target_esc": 0.4,
+        "threshold": 0.3880593776702881
+      },
+      {
+        "cascade_acc": 0.5902489626556017,
+        "esc_rate": 0.5975103734439834,
+        "n": 482,
+        "n_graded": 482,
+        "target_esc": 0.5,
+        "threshold": 0.49600765109062195
+      },
+      {
+        "cascade_acc": 0.6016597510373444,
+        "esc_rate": 0.6950207468879668,
+        "n": 482,
+        "n_graded": 482,
+        "target_esc": 0.6,
+        "threshold": 0.587897539138794
+      },
+      {
+        "cascade_acc": 0.633298755186722,
+        "esc_rate": 0.9336099585062241,
+        "n": 482,
+        "n_graded": 482,
+        "target_esc": 0.8,
+        "threshold": 0.7820717692375183
+      },
+      {
+        "cascade_acc": 0.6390041493775933,
+        "esc_rate": 1.0,
+        "n": 482,
+        "n_graded": 482,
+        "target_esc": 1.0,
+        "threshold": 0.9821988940238953
+      }
+    ],
+    "esc_best": 1.0,
+    "esc_breakeven": 0.1,
+    "esc_marginal_best": 0.1,
+    "esc_rate_best": 1.0,
+    "esc_rate_breakeven": 0.08091286307053942,
+    "esc_rate_marginal_best": 0.08091286307053942,
+    "esc_rate_under50": 0.41286307053941906,
+    "esc_under50": 0.4,
+    "gain_per_delegation": 0.13461538461538414,
+    "layer": "공개 벤치",
+    "local_only_acc": 0.5562759336099585
+  },
+  "core/gguf": {
+    "acc_breakeven": 0.7318978658536586,
+    "acc_marginal_best": 0.7566692073170732,
+    "acc_under50": 0.8511814024390244,
+    "arm": "1.7B",
+    "best_acc": 0.8656631097560976,
+    "curve": [
+      {
+        "cascade_acc": 0.7195121951219512,
+        "esc_rate": 0.0,
+        "n": 656,
+        "n_graded": 656,
+        "target_esc": 0.0,
+        "threshold": 0.02532792091369629
+      },
+      {
+        "cascade_acc": 0.7318978658536586,
+        "esc_rate": 0.03048780487804878,
+        "n": 656,
+        "n_graded": 656,
+        "target_esc": 0.05,
+        "threshold": 0.14682422578334808
+      },
+      {
+        "cascade_acc": 0.7566692073170732,
+        "esc_rate": 0.08384146341463415,
+        "n": 656,
+        "n_graded": 656,
+        "target_esc": 0.1,
+        "threshold": 0.23033317923545837
+      },
+      {
+        "cascade_acc": 0.7661966463414634,
+        "esc_rate": 0.12652439024390244,
+        "n": 656,
+        "n_graded": 656,
+        "target_esc": 0.15,
+        "threshold": 0.3198779225349426
+      },
+      {
+        "cascade_acc": 0.7886814024390244,
+        "esc_rate": 0.18292682926829268,
+        "n": 656,
+        "n_graded": 656,
+        "target_esc": 0.2,
+        "threshold": 0.38717156648635864
+      },
+      {
+        "cascade_acc": 0.8243140243902439,
+        "esc_rate": 0.2896341463414634,
+        "n": 656,
+        "n_graded": 656,
+        "target_esc": 0.3,
+        "threshold": 0.5187511742115021
+      },
+      {
+        "cascade_acc": 0.8412728658536586,
+        "esc_rate": 0.39939024390243905,
+        "n": 656,
+        "n_graded": 656,
+        "target_esc": 0.4,
+        "threshold": 0.6597288250923157
+      },
+      {
+        "cascade_acc": 0.8511814024390244,
+        "esc_rate": 0.4878048780487805,
+        "n": 656,
+        "n_graded": 656,
+        "target_esc": 0.5,
+        "threshold": 0.7450497150421143
+      },
+      {
+        "cascade_acc": 0.8582317073170732,
+        "esc_rate": 0.5823170731707317,
+        "n": 656,
+        "n_graded": 656,
+        "target_esc": 0.6,
+        "threshold": 0.8265125155448914
+      },
+      {
+        "cascade_acc": 0.8652820121951219,
+        "esc_rate": 0.8064024390243902,
+        "n": 656,
+        "n_graded": 656,
+        "target_esc": 0.8,
+        "threshold": 0.9335445165634155
+      },
+      {
+        "cascade_acc": 0.8656631097560976,
+        "esc_rate": 0.9984756097560976,
+        "n": 656,
+        "n_graded": 656,
+        "target_esc": 1.0,
+        "threshold": 0.9971094131469727
+      }
+    ],
+    "esc_best": 1.0,
+    "esc_breakeven": 0.05,
+    "esc_marginal_best": 0.1,
+    "esc_rate_best": 0.9984756097560976,
+    "esc_rate_breakeven": 0.03048780487804878,
+    "esc_rate_marginal_best": 0.08384146341463415,
+    "esc_rate_under50": 0.4878048780487805,
+    "esc_under50": 0.5,
+    "gain_per_delegation": 0.44318181818181895,
+    "layer": "자체 코퍼스",
+    "local_only_acc": 0.7195121951219512
+  },
+  "core/sc06": {
+    "acc_breakeven": 0.5339176829268293,
+    "acc_marginal_best": 0.5981326219512195,
+    "acc_under50": 0.7301829268292683,
+    "arm": "0.6B",
+    "best_acc": 0.8658536585365854,
+    "curve": [
+      {
+        "cascade_acc": 0.5339176829268293,
+        "esc_rate": 0.003048780487804878,
+        "n": 656,
+        "n_graded": 656,
+        "target_esc": 0.0,
+        "threshold": 0.04186248779296875
+      },
+      {
+        "cascade_acc": 0.5630716463414634,
+        "esc_rate": 0.057926829268292686,
+        "n": 656,
+        "n_graded": 656,
+        "target_esc": 0.05,
+        "threshold": 0.10062859952449799
+      },
+      {
+        "cascade_acc": 0.5981326219512195,
+        "esc_rate": 0.10823170731707317,
+        "n": 656,
+        "n_graded": 656,
+        "target_esc": 0.1,
+        "threshold": 0.1421927511692047
+      },
+      {
+        "cascade_acc": 0.6173780487804879,
+        "esc_rate": 0.14786585365853658,
+        "n": 656,
+        "n_graded": 656,
+        "target_esc": 0.15,
+        "threshold": 0.18126298487186432
+      },
+      {
+        "cascade_acc": 0.6400533536585366,
+        "esc_rate": 0.1875,
+        "n": 656,
+        "n_graded": 656,
+        "target_esc": 0.2,
+        "threshold": 0.21639269590377808
+      },
+      {
+        "cascade_acc": 0.6829268292682927,
+        "esc_rate": 0.28810975609756095,
+        "n": 656,
+        "n_graded": 656,
+        "target_esc": 0.3,
+        "threshold": 0.297627329826355
+      },
+      {
+        "cascade_acc": 0.7301829268292683,
+        "esc_rate": 0.3932926829268293,
+        "n": 656,
+        "n_graded": 656,
+        "target_esc": 0.4,
+        "threshold": 0.3880593776702881
+      },
+      {
+        "cascade_acc": 0.7892530487804879,
+        "esc_rate": 0.5289634146341463,
+        "n": 656,
+        "n_graded": 656,
+        "target_esc": 0.5,
+        "threshold": 0.49600765109062195
+      },
+      {
+        "cascade_acc": 0.8227896341463414,
+        "esc_rate": 0.6432926829268293,
+        "n": 656,
+        "n_graded": 656,
+        "target_esc": 0.6,
+        "threshold": 0.587897539138794
+      },
+      {
+        "cascade_acc": 0.8610899390243902,
+        "esc_rate": 0.8125,
+        "n": 656,
+        "n_graded": 656,
+        "target_esc": 0.8,
+        "threshold": 0.7820717692375183
+      },
+      {
+        "cascade_acc": 0.8658536585365854,
+        "esc_rate": 1.0,
+        "n": 656,
+        "n_graded": 656,
+        "target_esc": 1.0,
+        "threshold": 0.9821988940238953
+      }
+    ],
+    "esc_best": 1.0,
+    "esc_breakeven": 0.0,
+    "esc_marginal_best": 0.1,
+    "esc_rate_best": 1.0,
+    "esc_rate_breakeven": 0.003048780487804878,
+    "esc_rate_marginal_best": 0.10823170731707317,
+    "esc_rate_under50": 0.3932926829268293,
+    "esc_under50": 0.4,
+    "gain_per_delegation": 0.6073943661971836,
+    "layer": "자체 코퍼스",
+    "local_only_acc": 0.5323932926829268
+  },
+  "tool/gguf": {
+    "acc_breakeven": 0.88,
+    "acc_marginal_best": 0.88,
+    "acc_under50": 0.88,
+    "arm": "1.7B",
+    "best_acc": 0.88,
+    "curve": [
+      {
+        "cascade_acc": 0.855,
+        "esc_rate": 0.0,
+        "n": 50,
+        "n_graded": 50,
+        "target_esc": 0.0,
+        "threshold": 0.02532792091369629
+      },
+      {
+        "cascade_acc": 0.855,
+        "esc_rate": 0.0,
+        "n": 50,
+        "n_graded": 50,
+        "target_esc": 0.05,
+        "threshold": 0.14682422578334808
+      },
+      {
+        "cascade_acc": 0.855,
+        "esc_rate": 0.0,
+        "n": 50,
+        "n_graded": 50,
+        "target_esc": 0.1,
+        "threshold": 0.23033317923545837
+      },
+      {
+        "cascade_acc": 0.855,
+        "esc_rate": 0.0,
+        "n": 50,
+        "n_graded": 50,
+        "target_esc": 0.15,
+        "threshold": 0.3198779225349426
+      },
+      {
+        "cascade_acc": 0.855,
+        "esc_rate": 0.0,
+        "n": 50,
+        "n_graded": 50,
+        "target_esc": 0.2,
+        "threshold": 0.38717156648635864
+      },
+      {
+        "cascade_acc": 0.855,
+        "esc_rate": 0.0,
+        "n": 50,
+        "n_graded": 50,
+        "target_esc": 0.3,
+        "threshold": 0.5187511742115021
+      },
+      {
+        "cascade_acc": 0.855,
+        "esc_rate": 0.0,
+        "n": 50,
+        "n_graded": 50,
+        "target_esc": 0.4,
+        "threshold": 0.6597288250923157
+      },
+      {
+        "cascade_acc": 0.855,
+        "esc_rate": 0.0,
+        "n": 50,
+        "n_graded": 50,
+        "target_esc": 0.5,
+        "threshold": 0.7450497150421143
+      },
+      {
+        "cascade_acc": 0.855,
+        "esc_rate": 0.0,
+        "n": 50,
+        "n_graded": 50,
+        "target_esc": 0.6,
+        "threshold": 0.8265125155448914
+      },
+      {
+        "cascade_acc": 0.88,
+        "esc_rate": 0.48,
+        "n": 50,
+        "n_graded": 50,
+        "target_esc": 0.8,
+        "threshold": 0.9335445165634155
+      },
+      {
+        "cascade_acc": 0.86,
+        "esc_rate": 1.0,
+        "n": 50,
+        "n_graded": 50,
+        "target_esc": 1.0,
+        "threshold": 0.9971094131469727
+      }
+    ],
+    "esc_best": 0.8,
+    "esc_breakeven": 0.8,
+    "esc_marginal_best": 0.8,
+    "esc_rate_best": 0.48,
+    "esc_rate_breakeven": 0.48,
+    "esc_rate_marginal_best": 0.48,
+    "esc_rate_under50": 0.48,
+    "esc_under50": 0.8,
+    "gain_per_delegation": 0.052083333333333384,
+    "layer": "도구 호출",
+    "local_only_acc": 0.855
+  },
+  "tool/sc06": {
+    "acc_breakeven": 0.8125,
+    "acc_marginal_best": 0.8125,
+    "acc_under50": 0.8525,
+    "arm": "0.6B",
+    "best_acc": 0.86,
+    "curve": [
+      {
+        "cascade_acc": 0.735,
+        "esc_rate": 0.0,
+        "n": 50,
+        "n_graded": 50,
+        "target_esc": 0.0,
+        "threshold": 0.04186248779296875
+      },
+      {
+        "cascade_acc": 0.735,
+        "esc_rate": 0.0,
+        "n": 50,
+        "n_graded": 50,
+        "target_esc": 0.05,
+        "threshold": 0.10062859952449799
+      },
+      {
+        "cascade_acc": 0.735,
+        "esc_rate": 0.0,
+        "n": 50,
+        "n_graded": 50,
+        "target_esc": 0.1,
+        "threshold": 0.1421927511692047
+      },
+      {
+        "cascade_acc": 0.735,
+        "esc_rate": 0.0,
+        "n": 50,
+        "n_graded": 50,
+        "target_esc": 0.15,
+        "threshold": 0.18126298487186432
+      },
+      {
+        "cascade_acc": 0.735,
+        "esc_rate": 0.0,
+        "n": 50,
+        "n_graded": 50,
+        "target_esc": 0.2,
+        "threshold": 0.21639269590377808
+      },
+      {
+        "cascade_acc": 0.8125,
+        "esc_rate": 0.22,
+        "n": 50,
+        "n_graded": 50,
+        "target_esc": 0.3,
+        "threshold": 0.297627329826355
+      },
+      {
+        "cascade_acc": 0.8125,
+        "esc_rate": 0.46,
+        "n": 50,
+        "n_graded": 50,
+        "target_esc": 0.4,
+        "threshold": 0.3880593776702881
+      },
+      {
+        "cascade_acc": 0.8525,
+        "esc_rate": 0.5,
+        "n": 50,
+        "n_graded": 50,
+        "target_esc": 0.5,
+        "threshold": 0.49600765109062195
+      },
+      {
+        "cascade_acc": 0.86,
+        "esc_rate": 0.66,
+        "n": 50,
+        "n_graded": 50,
+        "target_esc": 0.6,
+        "threshold": 0.587897539138794
+      },
+      {
+        "cascade_acc": 0.86,
+        "esc_rate": 1.0,
+        "n": 50,
+        "n_graded": 50,
+        "target_esc": 0.8,
+        "threshold": 0.7820717692375183
+      },
+      {
+        "cascade_acc": 0.86,
+        "esc_rate": 1.0,
+        "n": 50,
+        "n_graded": 50,
+        "target_esc": 1.0,
+        "threshold": 0.9821988940238953
+      }
+    ],
+    "esc_best": 0.6,
+    "esc_breakeven": 0.3,
+    "esc_marginal_best": 0.3,
+    "esc_rate_best": 0.66,
+    "esc_rate_breakeven": 0.22,
+    "esc_rate_marginal_best": 0.22,
+    "esc_rate_under50": 0.5,
+    "esc_under50": 0.5,
+    "gain_per_delegation": 0.35227272727272735,
+    "layer": "도구 호출",
+    "local_only_acc": 0.735
+  },
+  "triv/gguf": {
+    "acc_breakeven": 0.94921875,
+    "acc_marginal_best": 0.9515625,
+    "acc_under50": 0.99140625,
+    "arm": "1.7B",
+    "best_acc": 0.9984375,
+    "curve": [
+      {
+        "cascade_acc": 0.94296875,
+        "esc_rate": 0.0,
+        "n": 160,
+        "n_graded": 160,
+        "target_esc": 0.0,
+        "threshold": 0.02532792091369629
+      },
+      {
+        "cascade_acc": 0.94296875,
+        "esc_rate": 0.0,
+        "n": 160,
+        "n_graded": 160,
+        "target_esc": 0.05,
+        "threshold": 0.14682422578334808
+      },
+      {
+        "cascade_acc": 0.94296875,
+        "esc_rate": 0.0,
+        "n": 160,
+        "n_graded": 160,
+        "target_esc": 0.1,
+        "threshold": 0.23033317923545837
+      },
+      {
+        "cascade_acc": 0.94296875,
+        "esc_rate": 0.0,
+        "n": 160,
+        "n_graded": 160,
+        "target_esc": 0.15,
+        "threshold": 0.3198779225349426
+      },
+      {
+        "cascade_acc": 0.94921875,
+        "esc_rate": 0.00625,
+        "n": 160,
+        "n_graded": 160,
+        "target_esc": 0.2,
+        "threshold": 0.38717156648635864
+      },
+      {
+        "cascade_acc": 0.9515625,
+        "esc_rate": 0.025,
+        "n": 160,
+        "n_graded": 160,
+        "target_esc": 0.3,
+        "threshold": 0.5187511742115021
+      },
+      {
+        "cascade_acc": 0.9625,
+        "esc_rate": 0.09375,
+        "n": 160,
+        "n_graded": 160,
+        "target_esc": 0.4,
+        "threshold": 0.6597288250923157
+      },
+      {
+        "cascade_acc": 0.9859375,
+        "esc_rate": 0.1375,
+        "n": 160,
+        "n_graded": 160,
+        "target_esc": 0.5,
+        "threshold": 0.7450497150421143
+      },
+      {
+        "cascade_acc": 0.99140625,
+        "esc_rate": 0.20625,
+        "n": 160,
+        "n_graded": 160,
+        "target_esc": 0.6,
+        "threshold": 0.8265125155448914
+      },
+      {
+        "cascade_acc": 0.9984375,
+        "esc_rate": 0.5625,
+        "n": 160,
+        "n_graded": 160,
+        "target_esc": 0.8,
+        "threshold": 0.9335445165634155
+      },
+      {
+        "cascade_acc": 0.99375,
+        "esc_rate": 1.0,
+        "n": 160,
+        "n_graded": 160,
+        "target_esc": 1.0,
+        "threshold": 0.9971094131469727
+      }
+    ],
+    "esc_best": 0.8,
+    "esc_breakeven": 0.2,
+    "esc_marginal_best": 0.3,
+    "esc_rate_best": 0.5625,
+    "esc_rate_breakeven": 0.00625,
+    "esc_rate_marginal_best": 0.025,
+    "esc_rate_under50": 0.20625,
+    "esc_under50": 0.6,
+    "gain_per_delegation": 0.3437499999999982,
+    "layer": "사소 질의",
+    "local_only_acc": 0.94296875
+  },
+  "triv/sc06": {
+    "acc_breakeven": 0.87890625,
+    "acc_marginal_best": 0.96328125,
+    "acc_under50": 0.98984375,
+    "arm": "0.6B",
+    "best_acc": 0.99375,
+    "curve": [
+      {
+        "cascade_acc": 0.87265625,
+        "esc_rate": 0.0,
+        "n": 160,
+        "n_graded": 160,
+        "target_esc": 0.0,
+        "threshold": 0.04186248779296875
+      },
+      {
+        "cascade_acc": 0.87265625,
+        "esc_rate": 0.0,
+        "n": 160,
+        "n_graded": 160,
+        "target_esc": 0.05,
+        "threshold": 0.10062859952449799
+      },
+      {
+        "cascade_acc": 0.87890625,
+        "esc_rate": 0.0125,
+        "n": 160,
+        "n_graded": 160,
+        "target_esc": 0.1,
+        "threshold": 0.1421927511692047
+      },
+      {
+        "cascade_acc": 0.89765625,
+        "esc_rate": 0.04375,
+        "n": 160,
+        "n_graded": 160,
+        "target_esc": 0.15,
+        "threshold": 0.18126298487186432
+      },
+      {
+        "cascade_acc": 0.903125,
+        "esc_rate": 0.05,
+        "n": 160,
+        "n_graded": 160,
+        "target_esc": 0.2,
+        "threshold": 0.21639269590377808
+      },
+      {
+        "cascade_acc": 0.93203125,
+        "esc_rate": 0.09375,
+        "n": 160,
+        "n_graded": 160,
+        "target_esc": 0.3,
+        "threshold": 0.297627329826355
+      },
+      {
+        "cascade_acc": 0.96328125,
+        "esc_rate": 0.1375,
+        "n": 160,
+        "n_graded": 160,
+        "target_esc": 0.4,
+        "threshold": 0.3880593776702881
+      },
+      {
+        "cascade_acc": 0.97109375,
+        "esc_rate": 0.18125,
+        "n": 160,
+        "n_graded": 160,
+        "target_esc": 0.5,
+        "threshold": 0.49600765109062195
+      },
+      {
+        "cascade_acc": 0.98984375,
+        "esc_rate": 0.28125,
+        "n": 160,
+        "n_graded": 160,
+        "target_esc": 0.6,
+        "threshold": 0.587897539138794
+      },
+      {
+        "cascade_acc": 0.99375,
+        "esc_rate": 0.625,
+        "n": 160,
+        "n_graded": 160,
+        "target_esc": 0.8,
+        "threshold": 0.7820717692375183
+      },
+      {
+        "cascade_acc": 0.99375,
+        "esc_rate": 1.0,
+        "n": 160,
+        "n_graded": 160,
+        "target_esc": 1.0,
+        "threshold": 0.9821988940238953
+      }
+    ],
+    "esc_best": 0.8,
+    "esc_breakeven": 0.1,
+    "esc_marginal_best": 0.4,
+    "esc_rate_best": 0.625,
+    "esc_rate_breakeven": 0.0125,
+    "esc_rate_marginal_best": 0.1375,
+    "esc_rate_under50": 0.28125,
+    "esc_under50": 0.6,
+    "gain_per_delegation": 0.6590909090909087,
+    "layer": "사소 질의",
+    "local_only_acc": 0.87265625
+  }
+}

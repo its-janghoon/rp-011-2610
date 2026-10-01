@@ -1,0 +1,48 @@
+# student 동결 설정. 실험 전체에서 불변 (SPEC §2).
+# 변경하면 4단계 이후 산출물 전량을 폐기해야 한다.
+
+primary:
+  model_id: Qwen/Qwen3-1.7B
+sidecar:
+  model_id: Qwen/Qwen3-0.6B
+# 양자화가 on-the-fly 라 별도 체크포인트 디렉터리가 없다 (아래 quantization 절 참조)
+
+quantization:
+  # 2026-09-16 실측으로 확정. llmcompressor W8A8-INT8(D3 원안)은 이 환경에서 불가능:
+  #   0.3.0  -> compressed-tensors 0.13 과 비호환 (KVCacheScaleType 이동)
+  #   0.7.2a -> 같은 이유로 is_fp4 없음. 더 올리면 torch 2.9->2.13, transformers 4.57->5.14
+  #             전체가 교체되어 vllm 0.14.0 이 깨진다. 게다가 numpy 2.5 를 끌어올려
+  #             vllm 엔진 코어가 "Numba needs NumPy 2.2 or less" 로 기동 실패한다.
+  # 대안 실측 (프로브 6건, eager, 배치):
+  #   rtn int8 W8 group128 : 104.8 tok/s, bf16 대비 텍스트 5/6 동일, logprob 최대차 0.11~2.91
+  #   fp8 W8A8 E4M3        : 108.5 tok/s, 텍스트 1/6 동일, 최대차 2.68  (정수가 아님)
+  #   bf16 기준선          : 110.8 tok/s
+  # int8 을 택한 이유: 동결 스펙의 'int8' 을 문자 그대로 지키고, 속도 손실이 없고,
+  # 온디바이스 런타임이 실제로 쓰는 형태(가중치 전용 정수 양자화)에 가깝다.
+  scheme: W8                   # 가중치 int8, 활성값 bf16. 원안 W8A8 에서 축소됨
+  method: rtn                  # vLLM 내장 Round-To-Nearest, on-the-fly
+  weight_bits: 8               # env RTN_NUM_BITS
+  group_size: 128              # env RTN_GROUP_SIZE
+  allow_deprecated: true       # vllm 0.14.0 에서 rtn 은 deprecated -> 명시적 우회 필요
+  calibration_required: false  # 캘리브레이션 불필요. cal split 오염 위험이 원천적으로 없다
+
+vllm:
+  gpu_memory_utilization: 0.85
+  max_model_len: 2048
+  dtype: auto
+  enforce_eager: false
+  seed_is_per_request: true    # SamplingParams.seed 로 복제 시드를 준다
+
+chat_template:
+  enable_thinking: false       # thinking off
+
+sampling:
+  temperature: 0.7
+  top_p: 0.8                   # Qwen3 non-thinking 권장값, 본 실험에서 동결
+  top_k: 20
+  repetition_penalty: 1.0
+  max_tokens: 256
+  logprobs: 20                 # uqlm negentropy 는 top-list 길이가 top_k_logprobs 와
+                               # 정확히 같지 않은 토큰을 NaN 처리한다. SPEC §9 구현 계약 참조.
+  top_k_logprobs: 20           # TopLogprobsScorer(top_k_logprobs=) 와 반드시 동일
+  seeds: [1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008]

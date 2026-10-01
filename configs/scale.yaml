@@ -1,0 +1,79 @@
+# 규모 동결 설정 (D1 = 옵션 1, G1 승인 2026-09-16)
+# 이 파일을 바꾸면 실험 전체가 무효다. 변경 시 SPEC §15 와 함께 개정한다.
+
+n_corpus: 5000
+overgen_factor: 1.15          # 중복제거 손실 흡수용 과생성 배수
+
+splits:                        # 합 = n_corpus
+  train: 2500
+  cal: 1250
+  test: 1250
+
+k_student: 8                   # 시드 8개 복제 (configs/student.yaml)
+k_server_train: 3
+k_server_test: 3
+k_server_cal: 0                # cal 은 server 실행이 필요 없다 (B/C/D 보정은 student 정답 여부만 사용)
+
+judge_replicates: 8            # judge 채점 대상 복제 수 (옵션 1 = 전량)
+
+# 생성 배치 크기 (D2: shard 18개 유지, 내부만 청킹)
+batch:
+  prompts_per_subbatch: 100
+  answer_keys_per_subbatch: 150
+  server_per_subbatch: 30
+  judge_per_subbatch: 40
+
+dedup:
+  # 2026-09-16 실측(scripts/diag_embedding_lang.py)으로 교체.
+  # all-MiniLM-L6-v2 는 영어 전용이라 한국어 임베딩이 좁은 원뿔에 뭉친다:
+  #   내용 무관 쌍(서로 다른 카테고리)의 코사인 평균이 ko 0.474 / en 0.060 (8배 차이)
+  #   ko 무관쌍 0.474 > en 동일카테 0.192  -> 한국어의 '내용'을 표현하지 못한다
+  # 다국어 모델에서는 ko 무관 0.187 < ko 동일카테 0.314 로 순서가 정상화된다.
+  model: sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+  model_rejected: sentence-transformers/all-MiniLM-L6-v2
+  cosine_threshold: 0.95
+
+embedding:
+  # 7단계 특징 / 조건 A 라우터. 둘 다 384차원이라 SPEC 의 차원 규정은 유지된다.
+  # A 는 student 를 실행하지 않아 비용이 임베딩+kNN 뿐이므로, 두 인코더로 각각 돌려
+  # A 의 성능 중 얼마가 인코더에 묶인 것인지 분리해 보고한다 (A-multi 가 본문, A-en 은 대조).
+  router_models:
+    - name: A-multi
+      model: sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+      headline: true
+    - name: A-en
+      model: sentence-transformers/all-MiniLM-L6-v2
+      headline: false
+  dim: 384
+
+prompt_length:                 # Qwen3 토크나이저 기준
+  min_tokens: 10
+  max_tokens: 200
+
+latency_bench:
+  n_items: 200                 # batch_size=1 단건 latency 적합용 층화 샘플
+  batch_size: 1
+
+server_rtt_ms: [300, 1000, 3000]   # SRV-1 민감도 (본문 대표값 = 1000)
+
+ece:
+  n_bins: 15
+  binning: equal_mass
+
+knn:
+  k: 25
+  either_counts_as: local      # either 는 로컬이 공짜이므로 local 로 계수
+
+conformal:
+  alpha: [0.05, 0.1, 0.2]
+
+logreg:
+  C: 1.0
+  max_iter: 1000
+
+route_label:                   # 기재 순서대로 평가, 첫 규칙 우선
+  local_if_student_acc_gte: 0.75
+  server_if_server_minus_student_gt: 0.25
+
+broken:
+  max_broken_per_prompt: 3     # k회 중 3회 초과(>=4)면 프롬프트 전체를 null bucket 으로 분리

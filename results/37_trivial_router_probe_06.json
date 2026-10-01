@@ -1,0 +1,128 @@
+{
+  "rows": [
+    {
+      "kind": "인사",
+      "prompt": "안녕",
+      "route": "local",
+      "score": 0.6230027140209609
+    },
+    {
+      "kind": "인사",
+      "prompt": "안녕하세요",
+      "route": "local",
+      "score": 0.6189205501941779
+    },
+    {
+      "kind": "인사",
+      "prompt": "hi",
+      "route": "local",
+      "score": 0.8559201440234119
+    },
+    {
+      "kind": "인사",
+      "prompt": "hello",
+      "route": "local",
+      "score": 0.834154929613909
+    },
+    {
+      "kind": "인사",
+      "prompt": "고마워",
+      "route": "local",
+      "score": 0.5328140570711197
+    },
+    {
+      "kind": "인사",
+      "prompt": "thanks",
+      "route": "local",
+      "score": 0.7164230119758064
+    },
+    {
+      "kind": "산수",
+      "prompt": "1+1",
+      "route": "local",
+      "score": 0.878477127341238
+    },
+    {
+      "kind": "산수",
+      "prompt": "2+2는?",
+      "route": "local",
+      "score": 0.6488752015214982
+    },
+    {
+      "kind": "산수",
+      "prompt": "10 x 10",
+      "route": "local",
+      "score": 0.9300428701530316
+    },
+    {
+      "kind": "산수",
+      "prompt": "what is 3+3",
+      "route": "local",
+      "score": 0.9782675332624393
+    },
+    {
+      "kind": "단문사실",
+      "prompt": "대한민국 수도",
+      "route": "local",
+      "score": 0.4104915491442218
+    },
+    {
+      "kind": "단문사실",
+      "prompt": "capital of France",
+      "route": "local",
+      "score": 0.71767789310157
+    },
+    {
+      "kind": "단문사실",
+      "prompt": "물의 화학식",
+      "route": "delegate",
+      "score": 0.16418230921953414
+    },
+    {
+      "kind": "단문사실",
+      "prompt": "how many days in a week",
+      "route": "local",
+      "score": 0.8401035340586838
+    },
+    {
+      "kind": "잡담",
+      "prompt": "ㅇㅇ",
+      "route": "delegate",
+      "score": 0.33852022161804274
+    },
+    {
+      "kind": "잡담",
+      "prompt": "ok",
+      "route": "local",
+      "score": 0.7909117875230108
+    },
+    {
+      "kind": "잡담",
+      "prompt": "뭐해?",
+      "route": "local",
+      "score": 0.6064323940376499
+    },
+    {
+      "kind": "잡담",
+      "prompt": "what's up",
+      "route": "local",
+      "score": 0.8644039110302327
+    },
+    {
+      "kind": "대조-어려움",
+      "prompt": "1979년 이란 혁명이 OPEC 의 유가 결정 구조에 미친 장기적 영향을 설명해봐",
+      "route": "delegate",
+      "score": 0.25847383145754455
+    },
+    {
+      "kind": "대조-어려움",
+      "prompt": "Derive the variance of the OLS estimator under heteroskedasticity",
+      "route": "delegate",
+      "score": 0.23897554902298745
+    }
+  ],
+  "target_esc": 0.4,
+  "threshold": 0.3880593776702881,
+  "trivial_delegated": 2,
+  "trivial_n": 18
+}

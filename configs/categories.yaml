@@ -1,0 +1,102 @@
+# 카테고리 9종. 비율 합 = 100. 난이도는 카테고리 내부에서 40/35/25.
+# difficulty 문구는 생성 지시문에 그대로 들어간다 -- 난이도가 자의적으로 흔들리지 않게 하는 장치.
+# grading_default 는 힌트이며 2단계에서 항목 단위로 재정의될 수 있다 (SPEC §5).
+
+difficulty_ratio:
+  easy: 0.40
+  medium: 0.35
+  hard: 0.25
+
+tie_order: [easy, medium, hard]
+
+categories:
+  - code: A
+    name_ko: 요약·재작성
+    name_en: summarize / rewrite
+    ratio: 15
+    grading_default: judge
+    desc: 사용자가 붙여넣은 짧은 원문을 요약하거나 톤·형식을 바꿔 다시 쓰게 하는 요청. 원문은 사용자가 직접 쓴 것처럼 자연스러워야 하며 저작물 인용이 아니어야 한다.
+    difficulty:
+      easy: 2~3문장 원문을 한 문장으로 요약. 제약 없음.
+      medium: '5~8문장 원문에서 요점 2~3개를 뽑되 길이·톤 제약 1개를 준다(예: 반말로, 두 문장으로).'
+      hard: 상충하거나 중복된 정보가 섞인 원문에 제약 2개 이상을 겹친다(길이 + 관점 지정 + 특정 항목 제외 등).
+  - code: B
+    name_ko: 번역
+    name_en: translation
+    ratio: 10
+    grading_default: judge
+    desc: 짧은 문장·문단의 번역 요청. ko shard 는 사용자가 한국어로 요청하고, en shard 는 영어로 요청한다. 번역 방향은 shard 안에서 섞어도 된다.
+    difficulty:
+      easy: 일상 표현 1~2문장 번역.
+      medium: 업무 메일·공지 톤의 3~4문장. 존댓말/격식 수준 지정.
+      hard: 관용구·중의적 표현 또는 도메인 용어가 섞인 문단. 용어 일관성 요구.
+  - code: C
+    name_ko: 짧은 사실질의
+    name_en: short factual QA
+    ratio: 15
+    grading_default: exact
+    desc: 답이 하나로 확정되는 단답형 사실 질문. 시점에 따라 답이 바뀌는 질문은 금지(인구·시세·최신 버전·현직자 등).
+    difficulty:
+      easy: 널리 알려진 단일 사실(원소 기호, 국가 수도, 기본 단위).
+      medium: 2단 조회가 필요한 사실(어떤 것의 속성의 속성), 또는 흔한 오답이 존재하는 사실.
+      hard: 혼동하기 쉬운 유사 항목을 구분해야 하는 사실. 답 자체는 여전히 하나로 확정될 것.
+  - code: D
+    name_ko: 형식변환
+    name_en: format conversion
+    ratio: 10
+    grading_default: exact
+    desc: 주어진 데이터를 지정 형식으로 바꾸는 요청(표->JSON, 날짜 형식, 단위, CSV->마크다운 등). 출력이 유일하게 결정되도록 형식을 명시한다.
+    difficulty:
+      easy: 항목 2~3개의 단순 변환. 키 이름까지 지정.
+      medium: 항목 4~6개, 중첩 1단 또는 결측값 처리 규칙 포함.
+      hard: 중첩 2단 이상, 타입 강제(문자열->숫자), 정렬 규칙 등 규칙 3개 이상.
+  - code: E
+    name_ko: 분류·추출
+    name_en: classification / extraction
+    ratio: 10
+    grading_default: exact
+    desc: 라벨 집합 중 하나를 고르는 분류, 또는 문장에서 지정 필드를 뽑는 추출. 분류는 라벨 후보를 프롬프트에 명시한다(exact). 추출은 필수 항목을 답이 아니라 존재 여부로 채점한다(contains).
+    difficulty:
+      easy: 라벨 2~3개 중 명확한 1개 선택, 또는 필드 1~2개 추출.
+      medium: 라벨 4~6개, 경계 사례 1개 포함. 또는 필드 3~4개 추출.
+      hard: 라벨이 서로 겹치거나 부정·이중부정이 섞인 문장. 또는 필드가 흩어져 있고 하나는 명시되지 않아 추론이 필요.
+  - code: F
+    name_ko: 툴 인자채우기
+    name_en: tool argument filling
+    ratio: 10
+    grading_default: contains
+    desc: 함수/API 시그니처를 주고 자연어 요청을 인자로 채우게 하는 요청. 시그니처와 필수 인자를 프롬프트에 명시한다.
+    difficulty:
+      easy: 인자 2개, 전부 문장에 그대로 등장.
+      medium: 인자 3~4개, 하나는 형 변환이나 기본값 판단이 필요.
+      hard: 인자 5개 이상 또는 선택 인자 존재. 하나는 문장에서 유도해야 하고 순서·타입 제약이 있다.
+  - code: G
+    name_ko: 다단계 추론
+    name_en: multi-step reasoning
+    ratio: 10
+    grading_default: exact
+    desc: 산술·논리 다단계 문제. 최종 답이 수치나 짧은 명제로 확정되어야 한다.
+    difficulty:
+      easy: 2단 산술.
+      medium: 3~4단 + 단위 변환이나 비율 계산.
+      hard: 5단 이상, 제약 만족 또는 역산 포함. 함정(불필요한 수치) 1개 허용.
+  - code: H
+    name_ko: 코드
+    name_en: code
+    ratio: 10
+    grading_default: judge
+    desc: 짧은 함수 작성, 버그 수정, 코드 설명. 실행 환경 없이 판정 가능해야 하므로 rubric 으로 채점한다.
+    difficulty:
+      easy: 5줄 이하 함수 작성 또는 명백한 한 줄 버그 수정.
+      medium: 경계 조건 처리나 자료구조 선택이 필요한 10~20줄.
+      hard: 요구사항 3개 이상을 동시에 만족해야 하거나, 주어진 코드의 논리 오류를 찾아 고쳐야 함.
+  - code: I
+    name_ko: 애매·불충분
+    name_en: ambiguous / insufficient
+    ratio: 10
+    grading_default: clarify
+    desc: 정보가 부족해 되묻는 것이 정답인 요청. 모델이 임의로 가정해 답하면 오답이다. 되묻지 않고도 답할 수 있는 요청을 넣지 말 것.
+    difficulty:
+      easy: 대상이 아예 빠진 요청("이거 고쳐줘").
+      medium: 두 가지 해석이 모두 가능해 하나를 고를 근거가 없는 요청.
+      hard: 충분해 보이지만 핵심 파라미터 하나가 빠져 답이 갈리는 요청. 표면적으로 자연스러워야 한다.

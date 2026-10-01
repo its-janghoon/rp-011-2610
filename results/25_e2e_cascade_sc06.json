@@ -1,0 +1,21 @@
+{
+  "cascade_acc": 0.7111111111111111,
+  "local_only_acc": 0.46111111111111114,
+  "max_new_tokens": 256,
+  "mean_decision_s": 0.2712061018768711,
+  "mean_gen_s": 2.2568948266543556,
+  "n": 90,
+  "n_delegate": 35,
+  "n_gradeable": 90,
+  "n_truncated": 6,
+  "paired": {
+    "ci_pp": [
+      14.86111111111111,
+      35.0
+    ],
+    "gain_pp": 25.0,
+    "n_paired": 90
+  },
+  "path": "sc06",
+  "runtime": "Qwen3-0.6B llama.cpp Q8_0"
+}

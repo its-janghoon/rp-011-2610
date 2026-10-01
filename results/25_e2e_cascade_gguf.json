@@ -1,0 +1,21 @@
+{
+  "cascade_acc": 0.8064024390243902,
+  "local_only_acc": 0.7195121951219512,
+  "max_new_tokens": 256,
+  "mean_decision_s": 0.6839058642073458,
+  "mean_gen_s": 8.643321301190865,
+  "n": 656,
+  "n_delegate": 121,
+  "n_gradeable": 656,
+  "n_truncated": 151,
+  "paired": {
+    "ci_pp": [
+      6.097084603658537,
+      11.300019054878051
+    ],
+    "gain_pp": 8.689024390243901,
+    "n_paired": 656
+  },
+  "path": "gguf",
+  "runtime": "llama.cpp Q8_0 (채택 경로)"
+}
